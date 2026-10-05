@@ -44,7 +44,7 @@ Volumes:
     ClaimName:  data-kantyna-postgres-0
     ReadOnly:   false
 Events:
-  Type     Reason            Age                  From               Message
+  Type     Reason          Age                  From               Message
   ----     ------            ----                 ----               -------
   Warning  FailedScheduling  41m                  default-scheduler  0/3 nodes are available: 3 node(s) had volume node affinity conflict. preemption: 0/3 nodes are available: 3 Preemption is not helpful for scheduling.
   Warning  FailedScheduling  2m (x9 over 38m)     default-scheduler  0/3 nodes are available: 3 node(s) had volume node affinity conflict. preemption: 0/3 nodes are available: 3 Preemption is not helpful for scheduling.
