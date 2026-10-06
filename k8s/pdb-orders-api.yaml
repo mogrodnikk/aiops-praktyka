@@ -1,0 +1,25 @@
+# PodDisruptionBudget dla orders-api (Kantyna).
+# Cel: przy dobrowolnych wyłączeniach (drain węzła, rolling update z kubectl drain)
+# zawsze zostaje co najmniej 1 działający pod orders-api.
+# Klaster: Kubernetes 1.36 (policy/v1 jest stabilne, nie potrzeba policy/v1beta1).
+# Etykiety wzięte z `kubectl get pods --show-labels` (pody kantyna-orders-api).
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: kantyna-orders-api
+  namespace: mateusz
+  labels:
+    app.kubernetes.io/name: orders-api
+    app.kubernetes.io/instance: kantyna
+    app.kubernetes.io/component: orders-api
+    app.kubernetes.io/part-of: kantyna
+    app.kubernetes.io/managed-by: manual
+spec:
+  # Chart ma replicaCount: 2, więc przy minAvailable: 1 można wyłączyć jeden pod naraz.
+  # Przy 1 replice PDB z minAvailable: 1 blokuje drain węzła (to świadome zachowanie).
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: orders-api
+      app.kubernetes.io/instance: kantyna
+      app.kubernetes.io/component: orders-api

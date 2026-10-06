@@ -1,0 +1,22 @@
+deploy	helm upgrade	﻿2026-10-06T11:06:55.2337045Z ##[group]Run helm upgrade kantyna app/deploy/helm/kantyna \
+deploy	helm upgrade	2026-10-06T11:06:55.2337559Z [36;1mhelm upgrade kantyna app/deploy/helm/kantyna \[0m
+deploy	helm upgrade	2026-10-06T11:06:55.2337936Z [36;1m  --namespace "$K8S_NAMESPACE" \[0m
+deploy	helm upgrade	2026-10-06T11:06:55.2338572Z [36;1m  --reuse-values \[0m
+deploy	helm upgrade	2026-10-06T11:06:55.2338915Z [36;1m  --set global.imageRegistry="$ECR_REGISTRY" \[0m
+deploy	helm upgrade	2026-10-06T11:06:55.2339284Z [36;1m  --set global.imageTag="$GITHUB_SHA" \[0m
+deploy	helm upgrade	2026-10-06T11:06:55.2339606Z [36;1m  --timeout 5m[0m
+deploy	helm upgrade	2026-10-06T11:06:55.2402912Z shell: /usr/bin/bash -e {0}
+deploy	helm upgrade	2026-10-06T11:06:55.2403203Z env:
+deploy	helm upgrade	2026-10-06T11:06:55.2403427Z   AWS_REGION: eu-central-1
+deploy	helm upgrade	2026-10-06T11:06:55.2403705Z   EKS_CLUSTER: aiops
+deploy	helm upgrade	2026-10-06T11:06:55.2404087Z   ECR_REGISTRY: 574921529806.dkr.ecr.eu-central-1.amazonaws.com/mateusz
+deploy	helm upgrade	2026-10-06T11:06:55.2404526Z   K8S_NAMESPACE: mateusz
+deploy	helm upgrade	2026-10-06T11:06:55.2404879Z   AWS_ROLE_ARN: arn:aws:iam::574921529806:role/aiops-ci-mateusz
+deploy	helm upgrade	2026-10-06T11:06:55.2405281Z   AWS_DEFAULT_REGION: eu-central-1
+deploy	helm upgrade	2026-10-06T11:06:55.2405726Z   AWS_ACCESS_KEY_ID: ***
+deploy	helm upgrade	2026-10-06T11:06:55.2406102Z   AWS_SECRET_ACCESS_KEY: ***
+deploy	helm upgrade	2026-10-06T11:06:55.2411872Z   AWS_SESSION_TOKEN: ***
+deploy	helm upgrade	2026-10-06T11:06:55.2412145Z ##[endgroup]
+deploy	helm upgrade	2026-10-06T11:07:06.3552261Z level=WARN msg="upgrade failed" name=kantyna error="conflict occurred while applying object mateusz/kantyna-web apps/v1, Kind=Deployment: Apply failed with 1 conflict: conflict with \"kubectl-set\" using apps/v1: .spec.template.spec.containers[name=\"web\"].image"
+deploy	helm upgrade	2026-10-06T11:07:06.5172106Z Error: UPGRADE FAILED: conflict occurred while applying object mateusz/kantyna-web apps/v1, Kind=Deployment: Apply failed with 1 conflict: conflict with "kubectl-set" using apps/v1: .spec.template.spec.containers[name="web"].image
+deploy	helm upgrade	2026-10-06T11:07:06.5211682Z ##[error]Process completed with exit code 1.

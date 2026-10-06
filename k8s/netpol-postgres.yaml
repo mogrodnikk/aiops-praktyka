@@ -1,0 +1,35 @@
+# NetworkPolicy dla Postgresa Kantyny.
+# Wpuszcza ruch przychodzący do poda Postgresa tylko od orders-api, tylko na port 5432.
+# Pozostały ruch przychodzący jest odrzucany (policyTypes: Ingress, brak innych reguł).
+# Ruch wychodzący z Postgresa nie jest ograniczany.
+# Etykiety wzięte z `kubectl get pods --show-labels` (pody kantyna-postgres-0 i kantyna-orders-api).
+# Klaster: Kubernetes 1.36 (networking.k8s.io/v1).
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: kantyna-postgres
+  namespace: mateusz
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/instance: kantyna
+    app.kubernetes.io/component: postgres
+    app.kubernetes.io/part-of: kantyna
+    app.kubernetes.io/managed-by: manual
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: postgres
+      app.kubernetes.io/instance: kantyna
+      app.kubernetes.io/component: postgres
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: orders-api
+              app.kubernetes.io/instance: kantyna
+              app.kubernetes.io/component: orders-api
+      ports:
+        - protocol: TCP
+          port: 5432

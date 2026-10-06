@@ -1,0 +1,53 @@
+validatingwebhookconfigurations.admissionregistration.k8s.io is forbidden: User "arn:aws:iam::574921529806:user/mateusz" cannot list resource "validatingwebhookconfigurations" in API group "admissionregistration.k8s.io" at the cluster scope
+mutatingwebhookconfigurations.admissionregistration.k8s.io is forbidden: User "arn:aws:iam::574921529806:user/mateusz" cannot list resource "mutatingwebhookconfigurations" in API group "admissionregistration.k8s.io" at the cluster scope
+AI Provider: AI not used; --explain not set
+
+Warnings : 
+- [ValidatingWebhookConfiguration] validatingwebhookconfigurations.admissionregistration.k8s.io is forbidden: User "arn:aws:iam::574921529806:user/mateusz" cannot list resource "validatingwebhookconfigurations" in API group "admissionregistration.k8s.io" at the cluster scope
+- [MutatingWebhookConfiguration] mutatingwebhookconfigurations.admissionregistration.k8s.io is forbidden: User "arn:aws:iam::574921529806:user/mateusz" cannot list resource "mutatingwebhookconfigurations" in API group "admissionregistration.k8s.io" at the cluster scope
+
+0: Deployment mateusz/kantyna-web()
+- Error: Deployment mateusz/kantyna-web has 2 replicas but 0 are available with status running
+
+1: Deployment mateusz/kantyna-worker()
+- Error: Deployment mateusz/kantyna-worker has 1 replicas but 0 are available with status running
+
+2: Deployment mateusz/kantyna-orders-api()
+- Error: Deployment mateusz/kantyna-orders-api has 2 replicas but 0 are available with status running
+
+3: Ingress mateusz/kantyna-web()
+- Error: Ingress uses the ingress class alb which does not exist.
+
+4: ReplicaSet mateusz/kantyna-worker-76c797fb54(Deployment/kantyna-worker)
+- Error: pods "kantyna-worker-76c797fb54-ct5mz" is forbidden: exceeded quota: participant-quota, requested: limits.memory=2Gi,requests.memory=2Gi, used: limits.memory=1792Mi,requests.memory=960Mi, limited: limits.memory=3Gi,requests.memory=1536Mi
+
+5: ConfigMap mateusz/kube-root-ca.crt()
+- Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace
+
+6: Service mateusz/kantyna-payments()
+- Error: Service has no endpoints, expected label app.kubernetes.io/instance=kantyna
+- Error: Service has no endpoints, expected label app.kubernetes.io/name=payment
+
+7: Service mateusz/kantyna-web()
+- Error: Service has not ready endpoints, pods: [Pod/kantyna-web-59db9b78f6-rhgjn Pod/kantyna-web-59db9b78f6-mwbx4], expected 2
+
+8: Service mateusz/kantyna-worker()
+- Error: Service has no endpoints, expected label app.kubernetes.io/instance=kantyna
+- Error: Service has no endpoints, expected label app.kubernetes.io/name=worker
+
+9: Service mateusz/kantyna-orders-api()
+- Error: Service has not ready endpoints, pods: [Pod/kantyna-orders-api-847bd6b6b6-vtfll Pod/kantyna-orders-api-847bd6b6b6-f25hk], expected 2
+
+10: Pod mateusz/kantyna-orders-api-847bd6b6b6-f25hk(Deployment/kantyna-orders-api)
+- Error: the last termination reason is Error container=orders-api pod=kantyna-orders-api-847bd6b6b6-f25hk
+
+11: Pod mateusz/kantyna-orders-api-847bd6b6b6-vtfll(Deployment/kantyna-orders-api)
+- Error: the last termination reason is Error container=orders-api pod=kantyna-orders-api-847bd6b6b6-vtfll
+
+12: Pod mateusz/kantyna-web-59db9b78f6-mwbx4(Deployment/kantyna-web)
+- Error: Back-off pulling image "574921529806.dkr.ecr.eu-central-1.amazonaws.com/kantyna/web:1.0.1": ErrImagePull: rpc error: code = NotFound desc = failed to pull and unpack image "574921529806.dkr.ecr.eu-central-1.amazonaws.com/kantyna/web:1.0.1": failed to resolve reference "574921529806.dkr.ecr.eu-central-1.amazonaws.com/kantyna/web:1.0.1": 574921529806.dkr.ecr.eu-central-1.amazonaws.com/kantyna/web:1.0.1: not found
+
+13: Pod mateusz/kantyna-web-59db9b78f6-rhgjn(Deployment/kantyna-web)
+- Error: Back-off pulling image "574921529806.dkr.ecr.eu-central-1.amazonaws.com/kantyna/web:1.0.1": ErrImagePull: rpc error: code = NotFound desc = failed to pull and unpack image "574921529806.dkr.ecr.eu-central-1.amazonaws.com/kantyna/web:1.0.1": failed to resolve reference "574921529806.dkr.ecr.eu-central-1.amazonaws.com/kantyna/web:1.0.1": 574921529806.dkr.ecr.eu-central-1.amazonaws.com/kantyna/web:1.0.1: not found
+
+
