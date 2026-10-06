@@ -146,6 +146,7 @@ jobs:
             --reuse-values \
             --set global.imageRegistry="$ECR_REGISTRY" \
             --set global.imageTag="$GITHUB_SHA" \
+            --force-conflicts \
             --timeout 5m
 
       - name: rollout status
