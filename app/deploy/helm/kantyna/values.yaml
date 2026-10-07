@@ -52,6 +52,7 @@ global:
 
 # Runtime flags rendered into ConfigMap <fullname>-flags as flags.json and
 # mounted at /etc/kantyna/flags/. Services reload this file periodically.
+#testyy
 flags:
   orders-api:
     error_rate: 0.0
